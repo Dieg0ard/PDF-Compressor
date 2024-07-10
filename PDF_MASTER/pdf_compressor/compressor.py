@@ -54,12 +54,8 @@ def obtener_nombre_salida(archivo_entrada, directorio_salida):
     return nombre_salida
 
 # Uso de la función
-entrada = "/home/diego/Documentos/Proyectos/Python-Projects/prueba/entradas/m.pdf"
-directorio_salida = "/home/diego/Documentos/Proyectos/Python-Projects/prueba/salidas"
-comprimir(entrada, directorio_salida)
+entrada = []
+directorio_salida = ""
 
-
-# Uso de la función
-entrada = "/home/diego/Documentos/Proyectos/Python-Projects/files/Archivos-de-prueba/Matemáticas I. Cálculo dife_ (Z-Library).pdf"
-directorio_salida = "/home/diego/Documentos/Proyectos/Python-Projects/files"
-comprimir(entrada, directorio_salida)
+for indice, entrada_b in enumerate(entrada):
+    comprimir(entrada_b,directorio_salida)
