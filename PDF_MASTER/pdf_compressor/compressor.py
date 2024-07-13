@@ -24,17 +24,20 @@ def comprimir(entrada, directorio_salida):
             data = img_dict["image"]
             ext = img_dict["ext"]
 
+            print(ext)
+
             if ext in jpeg_extensions:
-                img_r = im.comprimirJPEG(data)
+                img_r=im.redimensionarImagen(data)
                 page.replace_image(xref, stream=img_r)
             elif ext == "png":
-                img_r = im.comprimirPNG(data)
+                img_r=im.redimensionarImagen(data)
                 page.replace_image(xref, stream=img_r)
             # elif ext in jpeg2000_extensions:
             #     img_r = im.comprimirJPEG2000(data)
-            elif ext == "tif":
-                img_r = im.comprimirTIFF(data)
+            else:
+                img_r=im.redimensionarImagen(data)
                 page.replace_image(xref, stream=img_r)
+
 
             
 
@@ -52,6 +55,7 @@ def obtener_nombre_salida(archivo_entrada, directorio_salida):
         contador += 1
 
     return nombre_salida
+
 
 # Uso de la función
 entrada = []
