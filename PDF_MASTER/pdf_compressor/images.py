@@ -16,41 +16,53 @@ def comprimirPNG(datos):
     img_comprimida.seek(0)
     return img_comprimida.getvalue()
 
-def comprimirTIFF(datos):
+def redimensionarImagen(datos,ancho_reducir=100, alto_reducir=100):
+    
+
     img = Image.open(io.BytesIO(datos))
+    ancho_original, alto_original = img.size
+    nuevo_ancho = ancho_original - ancho_reducir
+    nuevo_alto = alto_original - alto_reducir
+    img = img.resize((nuevo_ancho, nuevo_alto), Image.Resampling.LANCZOS)
     img_comprimida = io.BytesIO()
-    img.save(img_comprimida, format='TIFF', compress_level=9)
+    img.save(img_comprimida, optimize=True)
     img_comprimida.seek(0)
     return img_comprimida.getvalue()
 
-def comprimirRAW(datos):
+#def comprimirTIFF(datos):
+   # img = Image.open(io.BytesIO(datos))
+    #img_comprimida = io.BytesIO()
+    #img.save(img_comprimida, format='TIFF', compress_level=9)
+    #img_comprimida.seek(0)
+    #return img_comprimida.getvalue()
+
+##def comprimirRAW(datos):
     img = Image.open(io.BytesIO(datos))
     img_comprimida = io.BytesIO()
     img.save(img_comprimida, optimize=True, format="JPEG", quality=50)
     img_comprimida.seek(0)
     return img_comprimida.getvalue()
 
-def comprimirWEBP(datos):
-    img = Image.open(io.BytesIO(datos))
-    img_comprimida = io.BytesIO()
-    img.save(img_comprimida, format='WEBP', quality=50)
-    img_comprimida.seek(0)
-    return img_comprimida.getvalue()
+##def comprimirWEBP(datos):
+    #img = Image.open(io.BytesIO(datos))
+    #img_comprimida = io.BytesIO()
+    #img.save(img_comprimida, format='WEBP', quality=50)
+    #img_comprimida.seek(0)
+    #return img_comprimida.getvalue()
 
-def comprimirBMP(datos):
-    img = Image.open(io.BytesIO(datos))
-    img_comprimida = io.BytesIO()
-    img.save(img_comprimida, format='BMP')
-    img_comprimida.seek(0)
-    return img_comprimida.getvalue()
+#def comprimirBMP(datos):
+    #img = Image.open(io.BytesIO(datos))
+    #img_comprimida = io.BytesIO()
+    #img.save(img_comprimida, format='BMP')
+    #img_comprimida.seek(0)
+    #return img_comprimida.getvalue()
 
-def comprimirGIF(datos):
-    img = Image.open(io.BytesIO(datos))
-    img_comprimida = io.BytesIO()
-    img.save(img_comprimida, format='GIF', optimize=True)
-    img_comprimida.seek(0)
-    return img_comprimida.getvalue()
-
+#def comprimirGIF(datos):
+    #img = Image.open(io.BytesIO(datos))
+    #img_comprimida = io.BytesIO()
+    #img.save(img_comprimida, format='GIF', optimize=True)
+    #img_comprimida.seek(0)
+    #return img_comprimida.getvalue()
 
 
 
@@ -62,3 +74,4 @@ def comprimirGIF(datos):
 #     imagecodecs.imwrite(img_comprimida, img, codec='jp2')
 #     img_comprimida.seek(0)
 #     return img_comprimida.getvalue()
+
