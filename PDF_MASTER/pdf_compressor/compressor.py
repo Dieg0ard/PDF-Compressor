@@ -1,5 +1,5 @@
 import os
-import pymupdf
+import pymupdf 
 import images as im
 
 def comprimir(entrada, directorio_salida):
@@ -24,21 +24,23 @@ def comprimir(entrada, directorio_salida):
             data = img_dict["image"]
             ext = img_dict["ext"]
 
+            print(ext)
+
             if ext in jpeg_extensions:
-                img_r = im.comprimirJPEG(data)
-                page.replace_image(xref, stream=img_r) # type: ignore
+                img_r=im.redimensionarImagen(data)
+                page.replace_image(xref, stream=img_r)
             elif ext == "png":
-                img_r = im.comprimirPNG(data)
-                page.replace_image(xref, stream=img_r) # type: ignore
+                img_r=im.redimensionarImagen(data)
+                page.replace_image(xref, stream=img_r)
             # elif ext in jpeg2000_extensions:
             #     img_r = im.comprimirJPEG2000(data)
-            elif ext == "tif":
-                img_r = im.comprimirTIFF(data)
-                page.replace_image(xref, stream=img_r) # type: ignore
+            else:
+                img_r=im.redimensionarImagen(data)
+                page.replace_image(xref, stream=img_r)
 
             
 
-    doc.set_metadata({}) # type: ignore
+    doc.set_metadata({})
     doc.save(archivo_salida, garbage=4, deflate=True, clean=True)
     doc.close()
 
@@ -55,7 +57,8 @@ def obtener_nombre_salida(archivo_entrada, directorio_salida):
 
 # Uso de la función
 entrada = []
-directorio_salida = []
+directorio_salida = ""
 
 for indice, entrada_b in enumerate(entrada):
     comprimir(entrada_b,directorio_salida)
+
